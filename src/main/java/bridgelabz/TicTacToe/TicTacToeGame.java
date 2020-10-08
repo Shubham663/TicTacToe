@@ -207,7 +207,7 @@ public class TicTacToeGame {
 			if (board[8] == ' ') {
 				board[8] = computerSign;
 				break;
-			} 
+			}
 		}
 
 	}
@@ -379,12 +379,24 @@ public class TicTacToeGame {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
-		TicTacToeGame ticTacToeGame = new TicTacToeGame();
-		ticTacToeGame.createBoard();
-		ticTacToeGame.determinePlayerCharacter();
-		ticTacToeGame.displayBoard();
-		Players player = ticTacToeGame.whoPlaysFirst();
-		System.out.print("\n" + player + " gets to play first");
-		ticTacToeGame.whoWins(player);
+		while (true) {
+			TicTacToeGame ticTacToeGame = new TicTacToeGame();
+			ticTacToeGame.createBoard();
+			ticTacToeGame.determinePlayerCharacter();
+			ticTacToeGame.displayBoard();
+			Players player = ticTacToeGame.whoPlaysFirst();
+			System.out.print("\n" + player + " gets to play first");
+			ticTacToeGame.whoWins(player);
+			System.out.println("Would you like to play another game? Select"
+					+ "\n1. For playing"
+					+ "\n2. For exiting");
+			Scanner sc = new Scanner(System.in);
+			int input = sc.nextInt();
+			sc.nextLine();
+			if(input == 2) {
+				System.out.println("Thank you for playing");
+				break;
+			}
+		}
 	}
 }
