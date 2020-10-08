@@ -1,5 +1,6 @@
 package bridgelabz.TicTacToe;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -27,15 +28,15 @@ public class TicTacToeGame {
 	 * this method determines sign for user on tic tac toe board
 	 */
 	private void determinePlayerCharacter() {
-		Scanner sc=new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		int count = 0;
-		while(true) {
+		while (true) {
 			count++;
 			System.out.println("Enter X or O for assigning character to Player");
-			String s= sc.nextLine();
+			String s = sc.nextLine();
 			playerSign = s.charAt(0);
-			if(playerSign!= 'X' && playerSign!='O') {
-				if(count == 5) {
+			if (playerSign != 'X' && playerSign != 'O') {
+				if (count == 5) {
 					System.out.println("Invalid input to many times. Exiting");
 					System.exit(0);
 				}
@@ -44,34 +45,62 @@ public class TicTacToeGame {
 			}
 			break;
 		}
-		if(playerSign == 'X')
+		if (playerSign == 'X')
 			computerSign = 'O';
 		else
 			computerSign = 'X';
 		System.out.println("The character chosen by player is " + playerSign);
 	}
-	
+
 	/**
 	 * Prints the values currently present in board
 	 */
 	private void displayBoard() {
 		System.out.println("The values of the board are as follows");
-		System.out.print("----------");
-		for(int boardPositionRow = 1; boardPositionRow <=3 ; boardPositionRow++) {
+		System.out.print("-------------");
+		for (int boardPositionRow = 1; boardPositionRow <= 3; boardPositionRow++) {
 			System.out.print("\n|");
-			for(int boardPositionColumn = 1; boardPositionColumn <=3 ; boardPositionColumn++){
-				System.out.print(board[(boardPositionRow-1)*3 +boardPositionColumn] + " |");
+			for (int boardPositionColumn = 1; boardPositionColumn <= 3; boardPositionColumn++) {
+				System.out.print(" " + board[(boardPositionRow - 1) * 3 + boardPositionColumn] + " |");
 			}
-			System.out.print("\n----------");
+			System.out.print("\n-------------");
 		}
 	}
-	
+
+	/**
+	 * this method allows user to set his sign at particular position
+	 */
+	private int makeMove() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nEnter the positions b/w 1-9");
+		int position = 0;
+		try {
+			position = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("The position provided is not correct");
+			return 0;
+		}
+		if (position < 1 || position > 9) {
+			System.out.println("Invalid position specified");
+			return 0;
+		}
+		if (board[position] == ' ') {
+			board[position] = playerSign;
+			return position;
+		} else {
+			System.out.println("The position is already filled");
+			return 0;
+		}
+
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		TicTacToeGame ticTacToeGame = new TicTacToeGame();
 		ticTacToeGame.createBoard();
 		ticTacToeGame.determinePlayerCharacter();
+		ticTacToeGame.displayBoard();
+		ticTacToeGame.makeMove();
 		ticTacToeGame.displayBoard();
 	}
 }
