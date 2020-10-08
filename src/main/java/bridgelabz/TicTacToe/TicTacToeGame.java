@@ -1,34 +1,27 @@
 package bridgelabz.TicTacToe;
 
-/**
- * Hello world!
- *
- */
 public class TicTacToeGame 
 {
-	private char []arr = new char[10]; 
-    /**
-	 * @return the arr
-	 */
-	public char[] getArr() {
-		return arr;
-	}
-	/**
-	 * @param arr the arr to set
-	 */
-	public void setArr(char[] arr) {
-		this.arr = arr;
-	}
+	private char []board;
 	
 	/**
-	 * @param arr
+	 * creates the initial board for playing
 	 */
-	public TicTacToeGame(char[] arr) {
+	public void createBoard() {
+		this.board =  new char[10];
+		for(int index = 1; index < 10 ; index++ )
+			board[index] = ' ';
+	}
+	/**
+	 * constructor for TicTacToeGame
+	 */
+	public TicTacToeGame() {
 		super();
-		this.arr = arr;
 	}
 	public static void main( String[] args )
     {
         System.out.println( "Welcome to Tic Tac Toe game" );
+        TicTacToeGame ticTacToeGame = new TicTacToeGame();
+        ticTacToeGame.createBoard();
     }
 }
