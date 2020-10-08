@@ -23,13 +23,6 @@ public class TicTacToeGame {
 		super();
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to Tic Tac Toe game");
-		TicTacToeGame ticTacToeGame = new TicTacToeGame();
-		ticTacToeGame.createBoard();
-		ticTacToeGame.determinePlayerCharacter();
-	}
-
 	/**
 	 * this method determines sign for user on tic tac toe board
 	 */
@@ -56,5 +49,27 @@ public class TicTacToeGame {
 		else
 			computerSign = 'X';
 		System.out.println("The character chosen by player is " + playerSign);
+	}
+	
+	/**
+	 * Prints the values currently present in board
+	 */
+	private void displayBoard() {
+		System.out.println("The values of the board are as follows");
+		for(int boardPositionRow = 1; boardPositionRow <=3 ; boardPositionRow++) {
+			for(int boardPositionColumn = 1; boardPositionColumn <=3 ; boardPositionColumn++){
+			System.out.print(board[(boardPositionRow-1)*3 +boardPositionColumn] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Tic Tac Toe game");
+		TicTacToeGame ticTacToeGame = new TicTacToeGame();
+		ticTacToeGame.createBoard();
+		ticTacToeGame.determinePlayerCharacter();
+		ticTacToeGame.displayBoard();
 	}
 }
