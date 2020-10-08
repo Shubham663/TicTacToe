@@ -74,7 +74,12 @@ public class TicTacToeGame {
 	/**
 	 * this method allows user to set his sign at particular position
 	 */
-	private int makeMove() {
+	private int makeMove(Players player) {
+		char sign;
+		if(player == Players.Player)
+			sign = playerSign;
+		else
+			sign = computerSign;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\nEnter the positions b/w 1-9");
 		int position = 0;
@@ -89,7 +94,7 @@ public class TicTacToeGame {
 			return 0;
 		}
 		if (board[position] == ' ') {
-			board[position] = playerSign;
+			board[position] = sign;
 			return position;
 		} else {
 			System.out.println("The position is already filled");
@@ -109,6 +114,43 @@ public class TicTacToeGame {
 			return Players.Computer;
 	}
 
+	private void whoWins(Players player) {
+		for(int turn =0; turn < 9; turn++) {
+			if(turn%2 == 0) 
+				this.makeMove(player);
+			else {
+				if(player == Players.Player)
+					this.makeMove(Players.Computer);
+				else
+					this.makeMove(Players.Player);
+			}
+			if(board[1] == playerSign  && board[2] ==playerSign  && board[3]==playerSign ||
+			   board[4] ==playerSign  && board[5] ==playerSign  && board[6]==playerSign ||
+			   board[7] ==playerSign  && board[8] ==playerSign  && board[9]==playerSign ||
+			   board[1] ==playerSign  && board[4] ==playerSign  && board[7]==playerSign ||
+			   board[2] ==playerSign  && board[5] ==playerSign  && board[8]==playerSign ||
+			   board[3] ==playerSign  && board[6] ==playerSign  && board[9]==playerSign ||
+			   board[1] ==playerSign  && board[5] ==playerSign  && board[9]==playerSign ||
+			   board[3] ==playerSign  && board[5] ==playerSign  && board[7]==playerSign ) {
+					System.out.println("Player won");
+					return;
+			}
+			else if (board[1] == computerSign  && board[2] ==computerSign  && board[3]==computerSign ||
+					 board[4] ==computerSign  && board[5] ==computerSign  && board[6]==computerSign ||
+					 board[7] ==computerSign  && board[8] ==computerSign  && board[9]==computerSign ||
+					 board[1] ==computerSign  && board[4] ==computerSign  && board[7]==computerSign ||
+					 board[2] ==computerSign  && board[5] ==computerSign  && board[8]==computerSign ||
+					 board[3] ==computerSign  && board[6] ==computerSign  && board[9]==computerSign ||
+					 board[1] ==computerSign  && board[5] ==computerSign  && board[9]==computerSign ||
+					 board[3] ==computerSign  && board[5] ==computerSign  && board[7]==computerSign) {
+					System.out.println("Computer won");
+					return;
+			}
+			this.displayBoard();
+		}
+		System.out.println("The Game is tied");
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		TicTacToeGame ticTacToeGame = new TicTacToeGame();
@@ -117,5 +159,6 @@ public class TicTacToeGame {
 		ticTacToeGame.displayBoard();
 		Players player = ticTacToeGame.whoPlaysFirst();
 		System.out.print("\n" + player +" gets to play first");
+		ticTacToeGame.whoWins(player);
 	}
 }
