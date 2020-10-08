@@ -162,12 +162,54 @@ public class TicTacToeGame {
 			return;
 		if (this.blockPosition(computerSign))
 			return;
-
-		while (true) {
-			int position = new Random().nextInt(9) + 1;
-			if (this.fillPosition(position, computerSign) != 0)
+		switch (0) {
+		case 0:
+			if (board[1] == ' ') {
+				board[1] = computerSign;
 				break;
+			}
+		case 1:
+			if (board[3] == ' ') {
+				board[3] = computerSign;
+				break;
+			}
+		case 2:
+			if (board[7] == ' ') {
+				board[7] = computerSign;
+				break;
+			}
+		case 3:
+			if (board[9] == ' ') {
+				board[9] = computerSign;
+				break;
+			}
+		case 4:
+			if (board[5] == ' ') {
+				board[5] = computerSign;
+				break;
+			}
+		case 5:
+			if (board[2] == ' ') {
+				board[2] = computerSign;
+				break;
+			}
+		case 6:
+			if (board[4] == ' ') {
+				board[4] = computerSign;
+				break;
+			}
+		case 7:
+			if (board[6] == ' ') {
+				board[6] = computerSign;
+				break;
+			}
+		case 8:
+			if (board[8] == ' ') {
+				board[8] = computerSign;
+				break;
+			} 
 		}
+
 	}
 
 	/**
