@@ -1,6 +1,7 @@
 package bridgelabz.TicTacToe;
 
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -60,7 +61,7 @@ public class TicTacToeGame {
 	 * Prints the values currently present in board
 	 */
 	private void displayBoard() {
-		System.out.println("The values of the board are as follows");
+		System.out.println("\nThe values of the board are as follows");
 		System.out.print("-------------");
 		for (int boardPositionRow = 1; boardPositionRow <= 3; boardPositionRow++) {
 			System.out.print("\n|");
@@ -93,6 +94,11 @@ public class TicTacToeGame {
 			System.out.println("Invalid position specified");
 			return 0;
 		}
+		return this.fillPosition(position, sign);
+	}
+	
+	
+	public int fillPosition(int position, char sign) {
 		if (board[position] == ' ') {
 			board[position] = sign;
 			return position;
@@ -116,14 +122,12 @@ public class TicTacToeGame {
 
 	private void whoWins(Players player) {
 		for(int turn =0; turn < 9; turn++) {
-			if(turn%2 == 0) 
-				this.makeMove(player);
+			if(turn%2 == 0 && player == Players.Player || turn%2==1 && player== Players.Computer) 
+				this.makeMove(Players.Player);
 			else {
-				if(player == Players.Player)
-					this.makeMove(Players.Computer);
-				else
-					this.makeMove(Players.Player);
+				this.computersMove();
 			}
+			this.displayBoard();
 			if(board[1] == playerSign  && board[2] ==playerSign  && board[3]==playerSign ||
 			   board[4] ==playerSign  && board[5] ==playerSign  && board[6]==playerSign ||
 			   board[7] ==playerSign  && board[8] ==playerSign  && board[9]==playerSign ||
@@ -132,7 +136,7 @@ public class TicTacToeGame {
 			   board[3] ==playerSign  && board[6] ==playerSign  && board[9]==playerSign ||
 			   board[1] ==playerSign  && board[5] ==playerSign  && board[9]==playerSign ||
 			   board[3] ==playerSign  && board[5] ==playerSign  && board[7]==playerSign ) {
-					System.out.println("Player won");
+					System.out.println("\nPlayer won");
 					return;
 			}
 			else if (board[1] == computerSign  && board[2] ==computerSign  && board[3]==computerSign ||
@@ -143,14 +147,143 @@ public class TicTacToeGame {
 					 board[3] ==computerSign  && board[6] ==computerSign  && board[9]==computerSign ||
 					 board[1] ==computerSign  && board[5] ==computerSign  && board[9]==computerSign ||
 					 board[3] ==computerSign  && board[5] ==computerSign  && board[7]==computerSign) {
-					System.out.println("Computer won");
+					System.out.println("\nComputer won");
 					return;
 			}
-			this.displayBoard();
 		}
-		System.out.println("The Game is tied");
+		System.out.println("\nThe Game is tied");
 	}
 	
+	private void computersMove() {
+		switch(0) {
+		case 0:if(board[1] ==computerSign && board[2] ==computerSign )
+					if(board[3] == ' ') {
+						board[3] = computerSign;
+						return;
+					}
+		case 1: if(board[3] ==computerSign && board[2] ==computerSign )
+					if(board[1] == ' ') {
+						board[1] = computerSign;
+						return;
+					}
+		case 2: if(board[1] ==computerSign && board[3] ==computerSign )
+			if(board[2] == ' ') {
+				board[2] = computerSign;
+				return;
+			}
+		case 3: if(board[4] ==computerSign && board[5] ==computerSign )
+			if(board[6] == ' ') {
+				board[6] = computerSign;
+				return;
+			}
+		case 4: if(board[5] ==computerSign && board[6] ==computerSign )
+			if(board[4] == ' ') {
+				board[4] = computerSign;
+				return;
+			}
+		case 5: if(board[4] ==computerSign && board[6] ==computerSign )
+			if(board[5] == ' ') {
+				board[5] = computerSign;
+				return;
+			}
+		case 6: if(board[7] ==computerSign && board[8] ==computerSign )
+			if(board[9] == ' ') {
+				board[9] = computerSign;
+				return;
+			}
+		case 7: if(board[8] ==computerSign && board[9] ==computerSign )
+			if(board[7] == ' ') {
+				board[7] = computerSign;
+				return;
+			}
+		case 8: if(board[7] ==computerSign && board[9] ==computerSign )
+			if(board[8] == ' ') {
+				board[8] = computerSign;
+				return;
+			}
+		case 9: if(board[1] ==computerSign && board[4] ==computerSign )
+			if(board[7] == ' ') {
+				board[7] = computerSign;
+				return;
+			}
+		case 10: if(board[4] ==computerSign && board[7] ==computerSign )
+			if(board[1] == ' ') {
+				board[1] = computerSign;
+				return;
+			}
+		case 11: if(board[1] ==computerSign && board[7] ==computerSign )
+			if(board[4] == ' ') {
+				board[4] = computerSign;
+				return;
+			}
+		case 12: if(board[5] ==computerSign && board[8] ==computerSign )
+			if(board[2] == ' ') {
+				board[2] = computerSign;
+				return;
+			}
+		case 13: if(board[2] ==computerSign && board[5] ==computerSign )
+			if(board[8] == ' ') {
+				board[8] = computerSign;
+				return;
+			}
+		case 14: if(board[2] ==computerSign && board[8] ==computerSign )
+			if(board[5] == ' ') {
+				board[5] = computerSign;
+				return;
+			}
+		case 15: if(board[9] ==computerSign && board[6] ==computerSign )
+			if(board[3] == ' ') {
+				board[3] = computerSign;
+				return;
+			}
+		case 16: if(board[3] ==computerSign && board[6] ==computerSign )
+			if(board[9] == ' ') {
+				board[9] = computerSign;
+				return;
+			}
+		case 17: if(board[3] ==computerSign && board[9] ==computerSign )
+			if(board[6] == ' ') {
+				board[6] = computerSign;
+				return;
+			}
+		case 18: if(board[1] ==computerSign && board[5] ==computerSign )
+			if(board[9] == ' ') {
+				board[9] = computerSign;
+				return;
+			}
+		case 19: if(board[5] ==computerSign && board[9] ==computerSign )
+			if(board[1] == ' ') {
+				board[1] = computerSign;
+				return;
+			}
+		case 20: if(board[1] ==computerSign && board[9] ==computerSign )
+			if(board[5] == ' ') {
+				board[5] = computerSign;
+				return;
+			}
+		case 21: if(board[5] ==computerSign && board[3] ==computerSign )
+			if(board[7] == ' ') {
+				board[7] = computerSign;
+				return;
+			}
+		case 22: if(board[5] ==computerSign && board[7] ==computerSign )
+			if(board[3] == ' ') {
+				board[3] = computerSign;
+				return;
+			}
+		case 23: if(board[3] ==computerSign && board[7] ==computerSign )
+			if(board[5] == ' ') {
+				board[5] = computerSign;
+				return;
+			}
+		}
+		while(true) {
+			int position = new Random().nextInt(9)+1;
+			if(this.fillPosition(position, computerSign) != 0 )
+				break;
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		TicTacToeGame ticTacToeGame = new TicTacToeGame();
