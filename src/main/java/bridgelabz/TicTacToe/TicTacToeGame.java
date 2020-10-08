@@ -56,11 +56,13 @@ public class TicTacToeGame {
 	 */
 	private void displayBoard() {
 		System.out.println("The values of the board are as follows");
+		System.out.print("----------");
 		for(int boardPositionRow = 1; boardPositionRow <=3 ; boardPositionRow++) {
+			System.out.print("\n|");
 			for(int boardPositionColumn = 1; boardPositionColumn <=3 ; boardPositionColumn++){
-			System.out.print(board[(boardPositionRow-1)*3 +boardPositionColumn] + " ");
+				System.out.print(board[(boardPositionRow-1)*3 +boardPositionColumn] + " |");
 			}
-			System.out.println();
+			System.out.print("\n----------");
 		}
 	}
 	
