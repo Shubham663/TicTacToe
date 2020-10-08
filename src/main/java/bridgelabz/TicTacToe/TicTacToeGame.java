@@ -35,12 +35,20 @@ public class TicTacToeGame {
 	 */
 	private void determinePlayerCharacter() {
 		Scanner sc=new Scanner(System.in);
+		int count = 0;
 		while(true) {
+			count++;
 			System.out.println("Enter X or O for assigning character to Player");
 			String s= sc.nextLine();
 			playerSign = s.charAt(0);
-			if(playerSign!= 'X' && playerSign!='O')
+			if(playerSign!= 'X' && playerSign!='O') {
+				if(count == 5) {
+					System.out.println("Invalid input to many times. Exiting");
+					System.exit(0);
+				}
+				System.out.println("Please provide valid input");
 				continue;
+			}
 			break;
 		}
 		if(playerSign == 'X')
