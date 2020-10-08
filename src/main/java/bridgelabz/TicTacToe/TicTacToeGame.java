@@ -7,6 +7,10 @@ public class TicTacToeGame {
 	private char[] board;
 	private char playerSign;
 	private char computerSign;
+	private enum Players{
+		Player,
+		Computer
+	}
 
 	/**
 	 * creates the initial board for playing
@@ -93,6 +97,17 @@ public class TicTacToeGame {
 		}
 
 	}
+	
+	/**
+	 * @return, returns the player who plays first
+	 */
+	private Players whoPlaysFirst() {
+		int k = (int)Math.floor(Math.random()*10)%2;
+		if( k == 0 )
+			return Players.Player;
+		else
+			return Players.Computer;
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
@@ -100,7 +115,7 @@ public class TicTacToeGame {
 		ticTacToeGame.createBoard();
 		ticTacToeGame.determinePlayerCharacter();
 		ticTacToeGame.displayBoard();
-		ticTacToeGame.makeMove();
-		ticTacToeGame.displayBoard();
+		Players player = ticTacToeGame.whoPlaysFirst();
+		System.out.print("\n" + player +" gets to play first");
 	}
 }
